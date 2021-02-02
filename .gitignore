@@ -8,7 +8,7 @@ idea
 
 dist
 db.sqlite3
-
+sqlite3.db
 venv
 
 **/migrations/**
