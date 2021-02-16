@@ -8,7 +8,7 @@ idea
 
 dist
 db.sqlite3
-sqlite3.db
+sqlite.db
 venv
 
 **/migrations/**
@@ -21,8 +21,8 @@ __pycache__/
 .pyc
 *.pyc
 
+!*media/.gitkeep
 media/*
-!*media
 
 log/debug.log
 
