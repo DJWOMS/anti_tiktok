@@ -8,8 +8,8 @@ import aiofiles
 from fastapi import UploadFile, BackgroundTasks, HTTPException
 from starlette.requests import Request
 
-from models import Video, User
-from schemas import UploadVideo
+from .models import Video, User
+from .schemas import UploadVideo
 
 
 async def save_video(

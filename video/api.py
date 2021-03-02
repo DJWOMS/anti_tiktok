@@ -6,9 +6,9 @@ from starlette.requests import Request
 from starlette.responses import StreamingResponse, HTMLResponse
 from starlette.templating import Jinja2Templates
 
-from schemas import GetListVideo
-from models import Video, User
-from services import save_video, open_file
+from .schemas import GetListVideo
+from .models import Video, User
+from .services import save_video, open_file
 
 video_router = APIRouter()
 templates = Jinja2Templates(directory="templates")
