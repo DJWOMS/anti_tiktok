@@ -1,12 +1,17 @@
 from fastapi_users import models
+from pydantic import EmailStr
 
 
 class User(models.BaseUser):
-    pass
+    username: str
+    phone: str
 
 
-class UserCreate(models.BaseUserCreate):
-    pass
+class UserCreate(models.CreateUpdateDictModel):
+    username: str
+    email: EmailStr
+    password: str
+    phone: str
 
 
 class UserUpdate(User, models.BaseUserUpdate):

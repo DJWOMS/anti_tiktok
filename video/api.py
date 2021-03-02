@@ -1,10 +1,11 @@
 from typing import List
 
-
-from fastapi import APIRouter, UploadFile, File, Form, BackgroundTasks
+from fastapi import APIRouter, UploadFile, File, Form, BackgroundTasks, Depends
 from starlette.requests import Request
 from starlette.responses import StreamingResponse, HTMLResponse
 from starlette.templating import Jinja2Templates
+
+from user.auth import current_active_user
 
 from .schemas import GetListVideo
 from .models import Video, User
@@ -20,8 +21,8 @@ async def create_video(
         title: str = Form(...),
         description: str = Form(...),
         file: UploadFile = File(...),
+        user: User = Depends(current_active_user)
 ):
-    user = await User.objects.first()
     return await save_video(user, file, title, description, back_tasks)
 
 
@@ -33,7 +34,7 @@ async def create_video(
 
 
 @video_router.get("/user/{user_pk}", response_model=List[GetListVideo])
-async def get_list_video(user_pk: int):
+async def get_list_video(user_pk: str):
     video_list = await Video.objects.filter(user=user_pk).all()
     return video_list
 

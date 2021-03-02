@@ -26,7 +26,7 @@ async def save_video(
     else:
         raise HTTPException(status_code=418, detail="It isn't mp4")
     info = UploadVideo(title=title, description=description)
-    return await Video.objects.create(file=file_name, user=user, **info.dict())
+    return await Video.objects.create(file=file_name, user=user.dict(), **info.dict())
 
 
 async def write_video(file_name: str, file: UploadFile):

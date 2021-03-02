@@ -27,3 +27,6 @@ async def shutdown() -> None:
 
 app.include_router(video_router)
 app.include_router(user_router)
+
+
+
