@@ -1,8 +1,14 @@
 from fastapi import FastAPI
-from api import video_router
+from fastapi_users.db import OrmarUserDatabase
 from db import database, metadata, engine
 
+from video.api import video_router
 
+from user.models import User
+from user.schemas import UserDB
+
+
+user_db = OrmarUserDatabase(UserDB, User)
 app = FastAPI()
 
 metadata.create_all(engine)
