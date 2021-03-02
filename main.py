@@ -1,14 +1,10 @@
 from fastapi import FastAPI
-from fastapi_users.db import OrmarUserDatabase
 from db import database, metadata, engine
 
 from video.api import video_router
-
-from user.models import User
-from user.schemas import UserDB
+from user.routers import user_router
 
 
-user_db = OrmarUserDatabase(UserDB, User)
 app = FastAPI()
 
 metadata.create_all(engine)
@@ -30,3 +26,4 @@ async def shutdown() -> None:
 
 
 app.include_router(video_router)
+app.include_router(user_router)
