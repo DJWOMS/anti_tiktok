@@ -11,7 +11,7 @@ from .schemas import GetListVideo
 from .models import Video, User
 from .services import save_video, open_file
 
-video_router = APIRouter()
+video_router = APIRouter(tags=["video"])
 templates = Jinja2Templates(directory="templates")
 
 
@@ -35,8 +35,7 @@ async def create_video(
 
 @video_router.get("/user/{user_pk}", response_model=List[GetListVideo])
 async def get_list_video(user_pk: str):
-    video_list = await Video.objects.filter(user=user_pk).all()
-    return video_list
+    return await Video.objects.filter(user=user_pk).all()
 
 
 @video_router.get("/index/{video_pk}", response_class=HTMLResponse)
