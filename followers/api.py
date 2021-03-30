@@ -25,14 +25,13 @@ async def my_list_following(user: User = Depends(current_active_user)):
     ).filter(subscriber=user.id).all()
 
 
-@follower_router.delete('/{username}')
+@follower_router.delete('/{username}', status_code=204)
 async def delete_follower(username: str, user: User = Depends(current_active_user)):
     follower = await models.Follower.objects.get_or_none(
         user__username=username, subscriber=user.id)
     if follower:
-        follower.delete()
-        return "Good"
-    return "Bad"
+        await follower.delete()
+    return {}
 
 
 @follower_router.get('/me', response_model=List[schemas.FollowerList])
