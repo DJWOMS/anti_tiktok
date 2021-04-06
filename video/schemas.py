@@ -12,6 +12,7 @@ class GetListVideo(BaseModel):
     id: int
     title: str
     description: str
+    like_count: int
 
 
 class GetVideo(GetListVideo):
