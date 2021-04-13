@@ -1,27 +1,30 @@
-from fastapi_users import models
 from pydantic import EmailStr, BaseModel, UUID4
 
 
-class User(models.BaseUser):
-    username: str
-    phone: str
-
-
-class UserCreate(models.CreateUpdateDictModel):
+class User(BaseModel):
     username: str
     email: EmailStr
-    password: str
-    phone: str
+    avatar: str
 
 
-class UserUpdate(User, models.BaseUserUpdate):
-    pass
+class UserCreate(User):
+    token: str
 
 
-class UserDB(User, models.BaseUserDB):
+class UserUpdate(User):
     pass
 
 
 class UserOut(BaseModel):
-    id: UUID4
+    id: int
     username: str
+    avatar: str
+
+
+class Token(BaseModel):
+    id: int
+    token: str
+
+
+class TokenPayload(BaseModel):
+    user_id: int = None

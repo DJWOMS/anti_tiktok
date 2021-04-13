@@ -1,6 +1,6 @@
 from pydantic import BaseModel
 
-from user.schemas import User
+from user.schemas import UserOut
 
 
 class UploadVideo(BaseModel):
@@ -16,7 +16,7 @@ class GetListVideo(BaseModel):
 
 
 class GetVideo(GetListVideo):
-    user: User
+    user: UserOut
 
 
 class Message(BaseModel):

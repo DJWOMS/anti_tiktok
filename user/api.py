@@ -1,15 +1,22 @@
+from fastapi import APIRouter
 from starlette.requests import Request
+from starlette.templating import Jinja2Templates
 
-from user.schemas import UserDB
+from . import schemas, services
 
+templates = Jinja2Templates(directory="templates")
 
-def send_sms_code(user: UserDB, request: Request) -> None:
-    print(f"User {user.id} has registered. {123456}")
-
-
-def after_verification(user: UserDB, request: Request) -> None:
-    print(f"{user}")
+user_router = APIRouter(tags=["auth"])
 
 
-def after_verification_request(user: UserDB, token: str, request: Request) -> None:
-    print(f"{user} - {token}")
+@user_router.get('/')
+async def google_auth(request: Request):
+    return templates.TemplateResponse("auth.html", {"request": request})
+
+
+@user_router.post('/google/auth', response_model=schemas.Token)
+async def google_auth(user: schemas.UserCreate):
+    user_id, token = await services.google_auth(user)
+    return schemas.Token(id=user_id, token=token)
+
+
