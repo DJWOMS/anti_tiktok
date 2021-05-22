@@ -23,6 +23,7 @@ async def create_video(
         file: UploadFile = File(...),
         user: User = Depends(get_user)
 ):
+    """ Add video """
     return await save_video(user, file, title, description, back_tasks)
 
 

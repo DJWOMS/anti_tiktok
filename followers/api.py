@@ -39,14 +39,3 @@ async def my_list_follower(user: User = Depends(get_user)):
     return await models.Follower.objects.select_related(
         ['user', 'subscriber']
     ).filter(user=user.id).all()
-
-
-
-
-
-
-
-
-
-
-
