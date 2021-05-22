@@ -1,4 +1,4 @@
-#Простой видео хочтинг
+#Простой видеохостинг / Simple video hosting
 
 ##Backend
 - Framework - FastAPI
