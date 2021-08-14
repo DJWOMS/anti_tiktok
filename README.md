@@ -1,6 +1,6 @@
-#Простой видеохостинг / Simple video hosting
+# Простой видеохостинг / Simple video hosting
 
-##Backend
+## Backend
 - Framework - FastAPI
 - ORM - ORMAR
 - DB - SQLite
